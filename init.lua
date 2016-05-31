@@ -21,7 +21,7 @@ end
 local init = function()
   local data = readFile('/home/samt2497/sxtools/data/zips.json')
   local codes = lib.json.parse(data)
-  storage.zipCodes = codes
+  exports.random.setCodes(codes)
 end
 exports.die = function()
 	os.exit(0)
@@ -30,10 +30,8 @@ end
 exports.reload = function()
 
 end
-exports.random = {}
-exports.random.zip = function()
-  return storage.zipCodes[math.random(1,#storage.zipCodes)]
-end
+-- Extra files
+exports.random = require('random').exports
 
 for key, pointer in pairs(exports) do
   _G[key] = pointer
